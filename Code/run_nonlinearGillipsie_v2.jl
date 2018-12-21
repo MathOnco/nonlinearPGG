@@ -223,10 +223,7 @@ params = (1.0,1.0,sigma,betaval,0.5,n,0.1,0.1,1000.0,Nt)
 
 end
 
-outfile = string("/Users/gregorykimmel/Dropbox/02_nonlinearPGG/manuscript/",
-"Figures/SIF1/code/manytrajectories_C0_",C0,"_D0_",D0,".txt")
-
-writedlm(outfile,savematrix)
+# writedlm(outfile,savematrix)
 
 u0 = [float(C0),float(D0)]
 tspan = (0.0,1000.0)
@@ -249,53 +246,4 @@ for i = 1 : Nt_ODE
     pD_ODE[i] = betaval/n*y[i]*(n-1)
 end
 
-outfile = string("/Users/gregorykimmel/Dropbox/02_nonlinearPGG/manuscript/",
-"Figures/SIF1/code/ODEtrajectory_C0_",C0,"_D0_",D0,".txt")
-
-writedlm(outfile,[sol.t xC])
-
-# neighborhoodSizeMax = 30
-
-# cooperatorDeath = zeros(neighborhoodSizeMax)
-# defectorDeath = zeros(neighborhoodSizeMax)
-# coexistence = zeros(neighborhoodSizeMax)
-# meancooperators = zeros(neighborhoodSizeMax)
-# meandefectors = zeros(neighborhoodSizeMax)
-
-# @showprogress 1 "Computing..."  for i = 1 : Nruns
-#     for j = 1 : neighborhoodSizeMax
-#         params = (1.0,1.0,sigma,betaval,0.5,j,0.1,0.1,1000.0,Nt)
-#         (t,cooperators,defectors,pCvec,pDvec) = transitionRates(x,params)
-
-#         # If cooperators have died
-#         if cooperators[end] == 0
-#             cooperatorDeath[j] += 1
-#         elseif defectors[end] == 0
-#             defectorDeath[j] += 1
-#         else
-#             coexistence[j] += 1
-#             startingIndex = Int(0.9*length(t))
-#             meancooperators[j] = mean(cooperators[startingIndex:end])
-#             meandefectors[j] = mean(defectors[startingIndex:end])
-#         end
-#     end
-# end
-
-# for i = 1 : Nruns
-#     for j = 1 : neighborhoodSizeMax
-#         params = (1.0,1.0,sigma,betaval,0.5,j,0.1,0.1,1000.0,Nt)
-#         (t,cooperators,defectors,pCvec,pDvec) = transitionRates(x,params)
-
-#         # If cooperators have died
-#         if cooperators[end] == 0
-#             cooperatorDeath[j] += 1
-#         elseif defectors[end] == 0
-#             defectorDeath[j] += 1
-#         else
-#             coexistence[j] += 1
-#             startingIndex = Int(0.9*length(t))
-#         end
-#         meancooperators[j] = mean(cooperators[startingIndex:end])
-#         meandefectors[j] = mean(defectors[startingIndex:end])
-#     end
-# end
+# writedlm(outfile,[sol.t xC])
